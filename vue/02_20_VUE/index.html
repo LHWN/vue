@@ -13,7 +13,11 @@
         <!-- MarkUp (DOM:View) -->
         <div id="app">
             <h1>JavaScript Framework, Vue.js</h1>
-            <h2>Bind() Vue Data Property / msg : "{{ msg }}", txt : "{{ txt }}" </h2>
+            <!-- h2 클릭 시 msg data의 값을 변경하는 이벤트 -->
+            <!-- vue 디렉티브 -->
+            <!-- v-on:click='(메서드)함수호출' 이벤트 발생 시 실행시킬 메서드 지정 , v-on은 @로 축약가능 -->
+            <!-- v-bind 데이터와 연결시키기 , v-bind는 :으로 축약 가능 -->
+            <h2 v-on:click='changeData'>Bind() Vue Data Property<br>msg : "{{ msg }}", txt : "{{ txt }}" </h2>
         </div>
 
         <!-- Script (View Model) -->
@@ -21,16 +25,23 @@
             // 뷰 생성자 방식
             var obj = new Vue({
                 el: '#app', // el은 root element를 의미, Vue 생성자를 만든 후 app DOM을 연결
-                data: { // data를 model 영역이라고 함 // (1) data를 속성으로 쓰는 방식
+                data: { // data를 model 영역이라고 함 // (1) data를 속성으로 쓰는 방식, data에서는 메서드를 사용하지 못함
                     msg: 'JavaScript Data',
                     txt: 'JavaScript Text',
+                },
+                methods: {
+                    changeData: function() {
+                        this.msg = '하이?';
+                        this.txt = '하이?';
+                    }
                 }
             });
         </script>
         <hr>
         <div id="header">
             <h1>MVVM Modeling</h1>
-            <h2>msg : "{{ msg }}" / txt : "{{ txt }}"</h2>
+            <!-- v-on:click = @click -->
+            <h2 @click='changeData'>msg : "{{ msg }}" / txt : "{{ txt }}"</h2>
         </div>
 
         <script>
@@ -40,8 +51,39 @@
                 // ECMA6 방식은 data() { 이렇게 작성
                     return {
                         msg: 'MVVM Pattern',
-                        txt: 'MVVM Text'
+                        txt: 'MVVM Text',
                     };
+                },
+                methods: {
+                    changeData: function() {
+                        var that = this; // 프로젝트가 커지면 이렇게 this를 변수에 담아 사용하면 좋음 (this를 잃어버릴 수 있어서)
+                        that.msg = '헬로?';
+                        that.txt = '헬로?'; 
+                    }
+                }
+            });
+        </script>
+        <hr>
+        <div id="main">
+            <h1>Vue Main Title1</h1>
+            <h2 @click='changeData'>Vue Main Title2 {{msg}}, {{txt}}</h2>
+        </div>
+
+        <script>
+            var mainObj = new Vue({
+                el: '#main',
+                data: function() {
+                    return {
+                        msg: 'data Method Type',
+                        txt: 'data Text',
+                    };
+                },
+                methods: {
+                    changeData: function() {
+                        var that = this;
+                        that.msg = '안녕?';
+                        that.txt = '안녕?';
+                    }
                 }
             });
         </script>
@@ -63,6 +105,10 @@
                 text-align: center;
             }
 
+            #main {
+                text-align: center;
+            }
+
             h2 {
                 color: navy;
                 background: #ddd;
@@ -73,7 +119,9 @@
             }
 
             h2:hover {
-                box-shadow: 5px 5px 5px gray;
+                background: rgb(224, 219, 219);
+                box-shadow: 1px 2px 0 1px gray;
+                cursor: pointer;
             }
         </style>
     </div>
