@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue.js Training</title>
+    
+    <script src="./vue/lib/vue.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <!-- MarkUp (DOM:View) -->
+        <div id="app">
+            <h1>JavaScript Framework, Vue.js</h1>
+            <h2>Bind() Vue Data Property / msg : "{{ msg }}", txt : "{{ txt }}" </h2>
+        </div>
+
+        <!-- Script (View Model) -->
+        <script>
+            // 뷰 생성자 방식
+            var obj = new Vue({
+                el: '#app', // el은 root element를 의미, Vue 생성자를 만든 후 app DOM을 연결
+                data: { // data를 model 영역이라고 함 // (1) data를 속성으로 쓰는 방식
+                    msg: 'JavaScript Data',
+                    txt: 'JavaScript Text',
+                }
+            });
+        </script>
+        <hr>
+        <div id="header">
+            <h1>MVVM Modeling</h1>
+            <h2>msg : "{{ msg }}" / txt : "{{ txt }}"</h2>
+        </div>
+
+        <script>
+            var headerObj = new Vue({
+                el: '#header',
+                data: function() { // (2) data를 method로 쓰는 방식 > 반드시 return { 속성(property): 값(value) } 의 형태로 작성해주어야 함, ECMA5 방식
+                // ECMA6 방식은 data() { 이렇게 작성
+                    return {
+                        msg: 'MVVM Pattern',
+                        txt: 'MVVM Text'
+                    };
+                }
+            });
+        </script>
+
+        <style>
+            #wrap {
+                width: 1000px;
+                margin: 0 auto;
+                background: #f0f0f0;
+                padding: 100px;
+                border-radius: 20px;
+            }
+
+            #app {
+                text-align: center;
+            }
+
+            #header {
+                text-align: center;
+            }
+
+            h2 {
+                color: navy;
+                background: #ddd;
+                border-radius: 20px;
+                display: inline-flex;
+                padding: 10px 20px;
+                font-weight: normal;
+            }
+
+            h2:hover {
+                box-shadow: 5px 5px 5px gray;
+            }
+        </style>
+    </div>
+</body>
+</html>
