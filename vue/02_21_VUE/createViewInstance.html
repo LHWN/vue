@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a View Instance & JavaScript Class (Instance, Function)</title>
+</head>
+<body>
+    <h1>리터럴(Literal) 방식 클래스 인스턴스 만들기</h1>
+
+    <script>
+        var vue = {
+            cnt: 0,
+            el: '<h1>프로퍼티(멤버변수) 템플릿</h1>',
+            method: ['피자', '닭칼국수', '김밥', '라면', '스파게티'],
+            main: {
+                student: [
+                    {
+                        num: 1,
+                        name: '이혜원',
+                        kor: 100,
+                        eng: 100,
+                        mat: 100
+                    },
+                    {
+                        num: 2,
+                        name: '이종욱',
+                        kor: 100,
+                        eng: 95,
+                        mat: 95
+                    },
+                    {
+                        num: 3,
+                        name: '이민경',
+                        kor: 100,
+                        eng: 100,
+                        mat: 95
+                    },
+                    {
+                        num: 4,
+                        name: '이지원',
+                        kor: 100,
+                        eng: 100,
+                        mat: 100
+                    },
+                    {
+                        num: 5,
+                        name: '김지민',
+                        kor: 100,
+                        eng: 90,
+                        mat: 100
+                    }
+                ],
+                address: [
+                    {
+                        name: '이혜원',
+                        addr: 'Yeusu-dong'
+                    },
+                    {
+                        name: '이종욱',
+                        addr: 'Bogugot-li'
+                    },
+                    {
+                        name: '이민경',
+                        addr: 'Juyeop-dong'
+                    },
+                    {
+                        name: '이지원',
+                        addr: 'Yeusu-dong'
+                    },
+                    {
+                        name: '김지민',
+                        addr: 'Sanghyun-dong'
+                    }
+                ]
+            },
+            init: function() {
+                this.cnt = 500;
+                this.el += '<h2>프로퍼티 (멤버변수)에 템플릿 내용 추가</h2>';
+                console.log('cnt : ' + this.cnt);
+                console.log('el : ' + this.el);
+            },
+            compute: function() {
+                console.log('method : ' + this.method);
+                console.log('main : ' + this.main.student[0].name);
+
+                var tot = this.main.student[0].kor + this.main.student[0].eng + this.main.student[0].mat;
+                console.log('total : ' + tot); // ECMA Script 5 [ES5]
+                console.log(`total : ${tot}`); // ECMA Script 6 [ES6]
+
+                // 주소부
+                console.log(`addr : ${this.main.address[4].addr}`);
+            },
+            run: function() {
+                this.init();
+                this.compute();
+            }
+
+        }
+
+        vue.init(); // vue 인스턴스 안에 init() 이라는 메서드 (멤버함수) 실행
+        vue.compute();
+
+        var objProject = {
+            a: 100,
+            el: 'Vue Framework',
+            data: {
+                cafe: [ {
+                        name: '빽다방',
+                        baverage: 'Ice Americano'
+                    },
+                    {
+                        name: 'Starbucks',
+                        baverage: 'Cool Lime'
+                    }
+                ]
+            },
+            method1: function() {
+                this.a = 500;
+                console.log(`a : ${this.a}`);
+            },
+            method2: function() {
+                this.el += ' Training';
+                console.log(this.el);
+                console.log(this.a);
+                console.log(this.data.cafe);
+                console.log(this.data.cafe[0].name + '에서 파는 ' + this.data.cafe[0].baverage + '도 맛있네?');
+                console.log(this.data.cafe[1].name + '는 ' + this.data.cafe[1].baverage + '가 맛있지');
+            },
+            init: function() {
+                this.method1();
+                this.method2();
+            }
+        };
+
+        objProject.init();
+
+
+    </script>
+</body>
+</html>
