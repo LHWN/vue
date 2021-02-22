@@ -1,93 +1,56 @@
-// 210220
+# 다른 유저가 git에서 복제
 
-# var > 전역변수로 사용할 때만 사용하고 최대한 자제하는것을 권장
+> git clone https://github.com/LHWN/vue.git
 
-# 객체 생성 방식 (1) 리터럴 방식 (2) 생성자 방식
+그리고 수정을 한 후 다시 commit, push까지 한 상태
+이때 다시 내가 변경 한 후 업로드하지 못한다. (충돌남)
 
-# html에서 Emmet 문법 예시 : 
-div>ul>li*6
->> 결과 
- <div>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-</div>
+# git 에 올라가 있는 파일에 변경 사항이 있다면, 그걸 다시 내려받아야 한다 (.git 이 들어있는 위치에서 pull 받아야함)
 
-div>{텍스트 내용}
->> 결과
-<div>텍스트 내용</div>
+> git pull origin master
 
-div+div+div
->> 결과
-<div></div>
-<div></div>
-<div></div>
+naming 규칙
+파일, 폴더이름을 쓸 때 -가 아닌 'underbar' 를 사용
+숫자를 사용할 때에는 00 01 02... 으로 두 자릿 수로 사용하기
 
-^는 한 단계 위로 올라가라는 의미
-div>ul>li*3^div>ul>li*3
-    <div>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        <div>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-    </div>
+# 자바스크립트에서 클래스를 만드는 방법 3가지
 
-$는 번호를 자동으로 넘버링하겠다는 의미
-div#section>ul>li.slide.slide$
->> 결과
-<div id="section">
-        <ul>
-            <li class="slide slide1"></li>
-        </ul>
-</div>
+(1) 리터럴 방식
+var obj = {
+property : value, // 멤버변수
+method : function() { // 멤버함수
 
-div#gallery>ul>li*8.gallery-img>img[src=./img/image$$.jpg]
->> 결과
-<div id="gallery">
-        <ul>
-            <li class="gallery-img"><img src="./img/image01.jpg" alt=""></li>
-            <li class="gallery-img"><img src="./img/image02.jpg" alt=""></li>
-            <li class="gallery-img"><img src="./img/image03.jpg" alt=""></li>
-            <li class="gallery-img"><img src="./img/image04.jpg" alt=""></li>
-            <li class="gallery-img"><img src="./img/image05.jpg" alt=""></li>
-            <li class="gallery-img"><img src="./img/image06.jpg" alt=""></li>
-            <li class="gallery-img"><img src="./img/image07.jpg" alt=""></li>
-            <li class="gallery-img"><img src="./img/image08.jpg" alt=""></li>
-        </ul>
-</div>
+}
+}
 
-@는 시작번호를 지정할 수 있ㅠ음
-div#gallery>ul>li*8.gallery-img>img[src=./img/image$$@0.jpg]
->> 결과
-<div id="gallery">
-    <ul>
-        <li class="gallery-img"><img src="./img/image00.jpg" alt=""></li>
-        <li class="gallery-img"><img src="./img/image01.jpg" alt=""></li>
-        <li class="gallery-img"><img src="./img/image02.jpg" alt=""></li>
-        <li class="gallery-img"><img src="./img/image03.jpg" alt=""></li>
-        <li class="gallery-img"><img src="./img/image04.jpg" alt=""></li>
-        <li class="gallery-img"><img src="./img/image05.jpg" alt=""></li>
-        <li class="gallery-img"><img src="./img/image06.jpg" alt=""></li>
-        <li class="gallery-img"><img src="./img/image07.jpg" alt=""></li>
-    </ul>
-</div>
+(1) 리터럴 방식 : var app = {} 와
+(2) 생성자 방식 : var app = new Object(); app = {} 는 같은 말
 
+(2) 함수 방식
+function classname {
+this.property = value;
 
-script[src=./vue/lib/vue.js]
-<script src="./vue/lib/vue.js"></script>
+this.method = function() {
 
-# CDN : 
-CDN(Contents Delivery Network)는 인터넷(Internet) 사용 환경에서 게임 클라이언트(Client)나 콘텐츠(Contents)를 사용자의 PC로 효율적으로 전달하기 위해 분산된 서버(Server)에 데이터(Data)를 저장해 전달해주는 시스템(System)을 말한다.
+}
+}
+
+var instance = new classname();
+
+(3) 프로토타입 방식
+: 실체가 있는 방식
+
+function classname {
+this.property = value;
+
+this.method = function() {
+
+}
+}
+classname.prototype.method = function() {
+
+}
+
+# 과제 : 성적 10명 이름/성적 v-for 만들어서 표
+
+ㅎㅇ
