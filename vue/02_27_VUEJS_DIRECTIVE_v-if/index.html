@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directive v-for 반복문</title>
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>a의 값(Value) : {{ a }} / b의 값(Value) : {{ b }}</h1>
+        <h2 v-if='a'>조건문(v-if)이 참(True)인 경우</h2>
+        <h2 v-if='b'>조건문(v-if)이 거짓(False)인 경우</h2>
+        <hr>
+        <h2>오늘의 날짜 : {{ currentDate }}</h2>
+        <h2>오늘의 날짜 : {{ currentDate.getFullYear() }} {{ currentDate.getMonth() + 1 }} {{ currentDate.getDate() }} {{ currentDate.getDay() }}</h2>
+        <hr>
+        <h3><a v-bind:href="url2" v-bind:title='urltitle'>Vue.js 바로가기</a></h3>
+        <hr>
+        <img :src='imageUrl' :alt='imgalt' :title='imgtitle'>
+        <hr>
+        <select name="Alphabet" id="Alphabet" v-model='select'>
+            <option value="">옵션을 선택하세요.</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+        <h3>선택 옵션 : {{ select }}</h3>
+        <hr>
+        <h2>체크박스 model</h2>
+        <div class="check-box">
+            <input type="checkbox" name="chk1" id="chk1" value="Check 1" v-model="chk"><label for="chk1">Check 1</label>
+            <input type="checkbox" name="chk2" id="chk2" value="Check 2" v-model="chk"><label for="chk2">Check 2</label>
+            <input type="checkbox" name="chk3" id="chk3" value="Check 3" v-model="chk"><label for="chk3">Check 3</label>
+            <input type="checkbox" name="chk4" id="chk4" value="Check 4" v-model="chk"><label for="chk4">Check 4</label>
+            <input type="checkbox" name="chk5" id="chk5" value="Check 5" v-model="chk"><label for="chk5">Check 5</label>
+        </div>
+        <h2>체크된 옵션 : {{ chk }}</h2>
+
+        <hr>
+        <h2>RadioButton model</h2>
+        <div class="radio-box">
+            <input type="radio" name="radio" id="radio1" value="Female" v-model="radio"><label for="radio1">Female</label>
+            <input type="radio" name="radio" id="radio2" value="Male" v-model="radio"><label for="radio2">Male</label>
+            <input type="radio" name="radio" id="radio3" value="Androgynous" v-model="radio"><label for="radio3">Androgynous</label>
+        </div>
+        <h2>체크된 옵션 : {{ radio }}</h2>
+        <hr>
+        <h2>RadioButton v-if ~ v-else-if ~ v-else</h2>
+        <div class="if-box">
+            <ol>
+                <li v-if='choice1'>A</li>
+                <li v-else-if='choice2'>B</li>
+                <li v-else>C</li>
+            </ol>
+        </div>
+
+        <hr>
+        <h2>입력상자 텍스트를 이용한 응용 v-model</h2>
+        <div class="text-box">
+            <label for="customerName">입력 : </label>
+            <input type="text" name='name' id='customerName' v-model='value' v-on:keyup='eventFn'>
+            <h2>입력된 값 : {{ value }}</h2>
+            <h3 v-show='x'>값을 입력하세요.</h3>
+        </div>
+
+
+
+    </div>
+<script>
+    const obj = new Vue({
+        el: '#app',
+        data: {
+            a: true,
+            b: false,
+            url1: 'https://naver.com',
+            url2: 'https://vuejs.org/',
+            imageUrl: './image/ha.jpeg',
+            imgalt: 'Alternative Text',
+            urltitle: 'vuejs 바로가기',
+            imgtitle: 'imgtitle',
+            currentDate: new Date(),
+            select: '',
+            chk: [],
+            radio: '',
+            choice1: false,
+            choice2: true,
+            value: '',
+            x: true
+        },
+        methods: {
+            eventFn: function() {
+                this.x = false;
+            }
+        }
+    });
+</script>
+    
+</body>
+</html>

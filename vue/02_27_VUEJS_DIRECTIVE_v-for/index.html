@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directive v-for 반복문</title>
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    <div id="member">
+        <h1>{{ }}</h1>
+        <ul>
+            <li v-for='(el, index) in memberList'>고객 번호 : {{ index+1 }} / 고객 이름 : {{ el.name}} / 고객 전화번호 : {{ el.phonenumber }}</li>
+        </ul>
+    </div>
+
+    <script>
+        const member = new Vue({
+            el: '#member',
+            data: {
+                title: '정기 고객 리스트',
+                memberList: [
+                    {
+                        name: '강민명',
+                        phonenumber: '010-1111-1111'
+                    },
+                    {
+                        name: '고한나',
+                        phonenumber: '010-1111-1111'
+                    },
+                    {
+                        name: '김근용',
+                        phonenumber: '010-1111-1111'
+                    },
+                    {
+                        name: '박나리',
+                        phonenumber: '010-1111-1111'
+                    },
+                    {
+                        name: '배수빈',
+                        phonenumber: '010-1111-1111'
+                    },
+                    {
+                        name: '서혜리',
+                        phonenumber: '010-1111-1111'
+                    },
+                    {
+                        name: '유지연',
+                        phonenumber: '010-1111-1111'
+                    },
+                    {
+                        name: '윤용준',
+                        phonenumber: '010-1111-1111'
+                    },
+                    {
+                        name: '임하리',
+                        phonenumber: '010-1111-1111'
+                    },
+
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

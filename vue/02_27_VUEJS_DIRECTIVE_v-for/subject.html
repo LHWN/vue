@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for Subject</title>
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        h1 {
+            text-align: center;
+            color: navy;
+        }
+
+        table {
+            width: 600px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        table td, th {
+            border: 1px solid #ccc;
+            height: 45px;
+            text-align: center;
+        }
+
+        table th {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Grade</h1><hr>
+        <table>
+            <tr><th>Name</th><th>Grade</th></tr>
+            <tr v-for='el in grade'><td>{{el.name}}</td><td>{{el.grade}}</td></tr>
+        </table>
+    </div>
+
+
+    <script>
+        var obj = new Vue({
+            el: '#app',
+            data: {
+                grade: [
+                    {
+                        name: 'Student A',
+                        grade: 'A+'
+                    },
+                    {
+                        name: 'Student B',
+                        grade: 'A'
+                    },
+                    {
+                        name: 'Student C',
+                        grade: 'B+'
+                    },
+                    {
+                        name: 'Student D',
+                        grade: 'C+'
+                    },
+                    {
+                        name: 'Student E',
+                        grade: 'D'
+                    },
+                    {
+                        name: 'Student F',
+                        grade: 'B'
+                    },
+                    {
+                        name: 'Student G',
+                        grade: 'F'
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

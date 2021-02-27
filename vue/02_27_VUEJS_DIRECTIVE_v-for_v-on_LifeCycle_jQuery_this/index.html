@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directive v-for 반복문</title>
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    <!-- HTML 요소 영역 -->
+    <div id="header">
+        <h1 class='h1-btn'>Vue.js LifeCycle</h1>
+        <h2>{{ msg }}</h2>
+        <!-- <p v-on:mouseenter='product'>제품 가격은 {{ number }} 입니다.</p> -->
+        <p v-on:click='price'>클릭하면 가격이 올라가요 : {{ number }} 입니다.</p>
+        <p @click='product'>클릭하면 message가 바뀌어요 : {{ dynamicMsg }}</p>
+    </div>
+
+    <!-- 스크립트 영역 -->
+    <script>
+        const header = new Vue({
+            el: '#header',
+            data: {
+                msg: 'A Data Message of Vue Instance',
+                dynamicMsg: '수정?',
+                number: 100
+            },
+            methods: {
+                // 메서드 리터럴 함수
+                product: function() {
+                    let that = this;
+                    // let that = header;
+                    that.dynamicMsg += ' 또 바뀜';
+                },
+                price: function() {
+                    this.number += 100;
+                }
+            },
+            beforeCreate: function() {
+                console.log('LifeCycle: beforeCreate');
+            },
+            created: function() {
+                console.log('LifeCycle: created');
+            },
+            beforeMount: function() {
+                console.log('LifeCycle: beforeMount');
+            },
+            mounted: function() {
+                console.log('LifeCycle: mouted > jQuery 사용 가능');
+
+                let that = this;
+
+                $('.h1-btn').on({
+                    click: function() {
+                        alert('jQuery Click Event!');
+                        console.log(that.number);
+                    },
+                    focusin: function() {
+                        console.log('jQuery focusin Event!');
+                    },
+                    mouseenter: function() {
+                        console.log('jQuery mouseenter Event!');
+                    },
+                    mouseleave: function() {
+                        console.log('jQueyr mouseleave Event!');
+                    }
+                });
+            },
+            beforeUpdate: function() {
+                console.log('LifeCycle: beforeUpdate');
+            },
+            updated: function() {
+                console.log('LifeCycle: updated');
+            },
+            beforeDestroy: function() {
+                console.log('LifeCycle: beforeDestroy');
+            },
+            destroyed: function() {
+                console.log('LifeCycle: destroyed');
+            }
+        });
+    </script>
+</body>
+</html>
