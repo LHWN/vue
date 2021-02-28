@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Component</title>
+    <!-- 오픈소스 -->
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        #wrapper {
+            width: 1200px;
+            margin: 0 auto;
+            background-color: rgb(230, 211, 211);
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        #wrapper #header h1 {
+            color:darkcyan;
+        }
+
+        #wrapper #header h2 {
+            color:rgb(102, 136, 199);
+        }
+
+        #wrapper #header h2 mark {
+            background-color: cornsilk;
+            border-radius: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h1>{{ msg }}</h1>
+            <!-- 상위 컴포넌트 -->
+            <nav-component></nav-component>
+        </div>
+        <script>
+            // 전역 컴포넌트
+            Vue.component('nav-component', {
+                template: '<h2><mark>Global Component Template</mark></h2>'
+            });
+
+
+            // 뷰 인스턴스 생성
+            var header = new Vue({
+                el: '#header',
+                data: {
+                    msg: 'create a Global component'
+                }
+            });
+        </script>
+</div>
+</body>
+</html>

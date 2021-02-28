@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Component</title>
+    <!-- 오픈소스 -->
+    <script src="./vue/lib/vue.js"></script>
+
+
+</head>
+    <style>
+        /* 리셋 설정 */
+        * {
+            margin: 0;
+            padding: 0;
+            vertical-align: middle;
+            border: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        html {
+            overflow-y: scroll;
+        }
+        
+        body {
+            font: normal 16px/1 '돋움', 'arial';
+            color: #555;
+            background: #f6f6f6;
+        }
+
+        a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        /* 여기까지 */
+
+        #wrapper {
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 20px;
+        }
+
+        #wrapper #section .notice {
+            width: 1170px;
+            margin: 0 auto;
+        }
+
+        #wrapper #section .notice h1 {
+            color:darkcyan;
+            padding: 50px 0;
+            font-size: 30px;
+            font-weight: normal;
+            text-align: center;
+            background-color: #e6d3d3;
+        }
+
+        #wrapper #section .notice h2 {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 50px;
+            border-top: 1px solid #bbb;
+            border-bottom: 1px solid #bbb;
+        }
+
+        #wrapper #section .notice span {
+            float: left;
+            display: block;
+        }
+
+        #wrapper #section .notice span.no {
+            width: 59px;
+        }
+        #wrapper #section .notice span.subject {
+            width: 819px;
+        }
+        #wrapper #section .notice span.date {
+            width: 119px;
+        }
+        #wrapper #section .notice span.hit {
+            width: 103px;
+        }
+
+        #wrapper #section .notice ul {
+            width: 100%;
+            text-align: center;
+        }
+
+        #wrapper #section .notice ul li {
+            border-bottom: 1px solid #ccc;
+            line-height: 50px;
+        }
+
+        #wrapper #section .notice ul li span.subject {
+            text-align: left;
+            text-indent: 20px;
+        }
+
+        #wrapper #section .notice ul li span.subject a:hover {
+            text-decoration: underline;
+            color: #000;
+        }
+
+    </style>
+<body>
+    <div id="wrapper">
+        <!-- HTML -->
+        
+        <div id="section">
+            <div class="notice">
+                <h1>Bulletin Board</h1>
+                <h2 class="clearfix">
+                    <span class="no">NO</span>
+                    <span class="subject">SUBJECT</span>
+                    <span class="date">DATE</span>
+                    <span class="hit">HIT</span>
+                </h2>
+                <ul>
+                    <notice-component v-for="item in notice" v-bind:propsbind='item'></notice-component>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- SCRIPT -->
+        <script>
+            Vue.component('notice-component', {
+                props: ['propsbind'],
+                template: "\
+                <li class='clearfix'>\
+                    <span class='no'>{{ propsbind.no }}</span>\
+                    <span class='subject'><a href='javascript:void(0);'>{{ propsbind.subject }}</a></span>\
+                    <span class='date'>{{ propsbind.date }}</span>\
+                    <span class='hits'>{{ propsbind.hits }}</span>\
+                </li>\
+                "
+            });
+
+            var section = new Vue({
+                el: '#section',
+                data: {
+                    notice: [
+                        {no: 301, subject: '시스템 개선 및 정검 안내', date: '2021-02-25', hits: 7658},
+                        {no: 300, subject: '스프링 프로모션', date: '2021-02-24', hits: 7658},
+                        {no: 299, subject: '삼성카드 스타벅스 오더 100%', date: '2021-02-23', hits: 7658},
+                        {no: 298, subject: '시스템 개선 및 정검 안내', date: '2021-02-21', hits: 7658},
+                        {no: 297, subject: '시스템 개선 및 정검 안내', date: '2021-02-21', hits: 7658},
+                        {no: 296, subject: '시스템 개선 및 정검 안내', date: '2021-02-21', hits: 7658},
+                        {no: 295, subject: '시스템 개선 및 정검 안내', date: '2021-02-21', hits: 7658},
+                        {no: 294, subject: '시스템 개선 및 정검 안내', date: '2021-02-21', hits: 7658},
+                        {no: 293, subject: '시스템 개선 및 정검 안내', date: '2021-02-21', hits: 7658},
+                        {no: 292, subject: '시스템 개선 및 정검 안내', date: '2021-02-20', hits: 7658},
+                        {no: 291, subject: '시스템 개선 및 정검 안내', date: '2021-02-19', hits: 7658}
+                    ]
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

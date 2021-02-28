@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Component</title>
+    <!-- 오픈소스 -->
+    <script src="./vue/lib/vue.js"></script>
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h1>{{ msg }}</h1>
+            <!-- 상위 컴포넌트 -->
+            <nav-component v-bind:txtbind='txt'></nav-component>
+        </div>
+        <script>
+            // 전역 컴포넌트 (하위 컴포넌트)
+            Vue.component('nav-component', {
+                props: ['txtbind'], // 바인딩할 속성 지정
+                template: '<h2><mark><i>{{ txtbind }}</i></mark></h2>'
+            });
+
+
+            // 뷰 인스턴스 생성
+            var header = new Vue({
+                el: '#header',
+                data: {
+                    msg: 'create a Global component',
+                    txt: 'Global component'
+                }
+            });
+        </script>
+</div>
+</body>
+</html>

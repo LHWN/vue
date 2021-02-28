@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue/lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h3>
+                {{ message }},
+                {{ todo }}
+            </h3>
+        </header>
+        <section>
+            <p v-bind:id="uid"></p>
+            <button v-on:click='clickBtn'>alert</button>
+            <button v-on:click='customBtn'>custom Alert</button>
+            <ul v-if="flag">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </section>
+        <script src="./app.js"></script>
+    </div>
+</body>
+</html>
