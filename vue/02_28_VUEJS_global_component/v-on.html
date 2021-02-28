@@ -51,7 +51,7 @@
         <div id="main">
             <div class="button-box">
                 <nav-component v-bind:count='num'></nav-component>
-                <button v-on:click='onClick'>Click!</button>
+                <button v-on="{click: onClick, focusin: focusin, mouseenter: mouseEnter}">Click!</button>
             </div>
         </div>    
 
@@ -69,7 +69,13 @@
                 methods: {
                     onClick: function() {
                         this.num += 100;
-                    }
+                    },
+                    mouseEnter: function() {
+                        console.log('mouseenter');
+                    },
+                    focusin: function() {
+                        console.log('focusin');
+                    },
                 }
             });
         </script>
