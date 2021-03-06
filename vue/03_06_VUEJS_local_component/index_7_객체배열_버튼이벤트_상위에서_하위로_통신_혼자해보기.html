@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Component</title>
+    <!-- 오픈소스 -->
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        #wrapper {
+            width: 1200px;
+            margin: 0 auto;
+            background-color: rgb(230, 211, 211);
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        #wrapper #header h1 {
+            color:darkcyan;
+        }
+
+        #wrapper #header h2 {
+            color:rgb(102, 136, 199);
+        }
+
+        #wrapper #header h2 mark {
+            background-color: cornsilk;
+            border-radius: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="cafe">
+            <h1 style="text-align: center">Cafe Menu</h1>
+            <ol>
+                <menu-component v-bind:propsdata='menu' v-for='menu in menuData'></menu-component>
+            </ol>
+        </div>
+
+        <script>
+            var menuComponent = {
+                props: ['propsdata'],
+                template: '<li>{{ propsdata }}</li>'
+            }
+
+            var obj = new Vue({
+                el: '#cafe',
+                data: {
+                    menuData: [
+                        {
+                            name: 'americano',
+                            price: '4000'
+                        },
+                        {
+                            name: 'latte',
+                            price: '5000'
+                        },
+                        {
+                            name: 'smoothie',
+                            price: '6000'
+                        },
+                        {
+                            name: 'macchianto',
+                            price: '5000'
+                        },
+                        {
+                            name: 'hazelnut',
+                            price: '5000'
+                        },
+                        {
+                            name: 'tea',
+                            price: '3000'
+                        }
+                    ]
+                },
+                components: {
+                    'menu-component': menuComponent
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

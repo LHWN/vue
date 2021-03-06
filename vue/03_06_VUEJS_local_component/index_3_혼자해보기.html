@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Component</title>
+    <!-- 오픈소스 -->
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        #wrapper {
+            width: 1200px;
+            margin: 0 auto;
+            background-color: rgb(230, 211, 211);
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        #wrapper #header h1 {
+            color:darkcyan;
+        }
+
+        #wrapper #header h2 {
+            color:rgb(102, 136, 199);
+        }
+
+        #wrapper #header h2 mark {
+            background-color: cornsilk;
+            border-radius: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="section">
+            <header-component></header-component>
+            <body-component></body-component>
+            <footer-component></footer-component>
+        </div>
+    </div>
+
+    <script>
+        var headerComponent = {
+            template: '<div>Header Component is here</div>'
+        };
+        var bodyComponent = {
+            template: '<div>Body Component is here</div>'
+        };
+        var footerComponent = {
+            template: '<div>Footer Component is here</div>'
+        };
+
+        var obj = new Vue({
+            el: '#section',
+            data: {
+                data1: 'data1',
+                data2: 'data2',
+                data3: 'data3'
+            },
+            components: {
+                'header-component': headerComponent,
+                'body-component': bodyComponent,
+                'footer-component': footerComponent
+            }
+         });
+    </script>
+</body>
+</html>

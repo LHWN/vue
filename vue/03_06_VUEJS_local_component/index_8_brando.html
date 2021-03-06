@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Component</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <!-- 오픈소스 -->
+    <script src="./vue/lib/vue.js"></script>
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <!-- HEADER 영역 START -->
+        <div id="header">
+            <div class="wrap">
+                <div class="gap">
+                    <div class="container">
+                        <logo-component></logo-component>
+                        <nav id="nav">
+                            <ul>
+                        <nav-component v-bind:propsNav="item" v-for="item in gnb"></nav-component>
+                        </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var logoComponent = {
+                props: ['propslogo'],
+                template: '\
+                    <div class="logo">\
+                        <a href="javascript:" class="logo-btn">\
+                            <img src="./image/logo.png" alt="logo">\
+                        </a></div>\
+                    </div>\
+                '};
+
+            var navComponent = {
+                props:['propsnav'],
+                template: '<li>\
+                    <a href="javascript:" class="main-btn">{{ propsnav.menu }}</a>\
+                    </li>\
+                    '};
+            var header = new Vue({
+                el: '#header',
+                data: {
+                    gnb: [
+                        {
+                            menu: 'ABOUT'
+                        },
+                        {
+                            menu: 'PORTFOLIO'
+                        },
+                        {
+                            menu: 'SERVICES'
+                        },
+                        {
+                            menu: 'TESTIMONIAL'
+                        },
+                        {
+                            menu: 'BLOG'
+                        },
+                        {
+                            menu: 'CONTACT'
+                        },
+                    ]
+                },
+                components: {
+                    'logo-component': logoComponent,
+                    'nav-component': navComponent
+                }
+            }); 
+        </script>
+        <!-- HEADER 영역 END -->
+
+        <!-- MAIN 영역 START -->
+        <div id="main">
+            <section1-component></section1-component>
+        </div>
+        <script>
+            var section1Component = {
+                props:['propssec1'],
+                template: '\
+                    <section id="section1">\
+                        <div class="wrap">\
+                            <div class="gap">\
+                                <div class="container">\
+                                    <h4>WE WORK HARD, WE PLAY HARD</h4>\
+                                    <h2>\
+                                        SALIENT IS DIGITAL<br>\
+                                            BRILLIANCE\
+                                    </h2>\
+                                    <h3>\
+                                        CREATIVE SOLUTIONS TO IMPROVE YOUR BUSINESS\
+                                    </h3>\
+                                    <p>\
+                                        <span><a href="javascript:">OUR SERVICES</a></span>\
+                                    </p>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </section>\
+                '};
+
+            var main = new Vue({
+                el: '#main',
+                data: {
+
+                },
+                components: {
+                    'section1-component': section1Component,
+                }
+            });
+        </script>
+        <!-- MAIN 영역 END -->
+    </div>
+</body>
+</html>
