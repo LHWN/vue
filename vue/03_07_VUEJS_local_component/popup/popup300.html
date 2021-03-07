@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POPUP</title>
+    <!-- 오픈소스 -->
+    <script src="../vue/lib/vue.js"></script>
+
+    <style>
+        #wrapper {
+            width: 1200px;
+            margin: 0 auto;
+            background-color: rgb(230, 211, 211);
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        #wrapper #header h1 {
+            color: darkcyan;
+        }
+
+        #wrapper #header h2 {
+            color: rgb(102, 136, 199);
+        }
+
+        #wrapper #header h2 mark {
+            background-color: cornsilk;
+            border-radius: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="localComp">
+            <h1>Local Component</h1>
+            <header-component></header-component>
+            <main-component></main-component>
+            <footer-component></footer-component>
+            <popup-component></popup-component>
+            <modal-component></modal-component>
+        </div>
+
+        <script>
+            var localComp = new Vue({
+                el: '#localComp',
+                data: {
+                    comp1: 'component-1',
+                    comp2: 'component-2',
+                    comp3: 'component-3',
+                    comp4: 'component-4',
+                    comp5: 'component-5',
+                },
+                props: ['propsdata'],
+                components: { // 지역 컴포넌트
+                    'header-component': {
+                        template: '<h2>header-component is created.</h2>'
+                    },
+                    'main-component': {
+                        template: '<h2>main-component is created.</h2>'
+                    },
+                    'footer-component': {
+                        template: '<h2>footer-component is created.</h2>'
+                    },
+                    'popup-component': {
+                        template: '<h2>popup-component is created.</h2>'
+                    },
+                    'modal-component': {
+                        template: '<h2>modal-component is created.</h2>'
+                    },
+                }
+            });
+        </script>
+    </div>
+</body>
+
+</html>

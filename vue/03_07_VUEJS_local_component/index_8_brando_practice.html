@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Component</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <!-- HEADER 영역 START -->
+        <div id="header">
+            <div class="wrap">
+                <div class="gap">
+                    <div class="container">
+                        <logo-component></logo-component>
+                        <nav id="nav">
+                            <ul>
+                        <nav-component v-bind:propsNav="item" v-for="item in gnb"></nav-component>
+                        </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var logoComponent = {
+                props: ['propslogo'],
+                template: '\
+                    <div class="logo">\
+                        <a href="javascript:" class="logo-btn">\
+                            <img src="./image/logo.png" alt="logo">\
+                        </a></div>\
+                    </div>\
+                '};
+
+            var navComponent = {
+                props:['propsnav'],
+                template: '<li>\
+                    <a href="javascript:" class="main-btn">{{ propsnav.menu }}</a>\
+                    </li>\
+                    '};
+            var header = new Vue({
+                el: '#header',
+                data: {
+                    gnb: [
+                        {
+                            menu: 'ABOUT'
+                        },
+                        {
+                            menu: 'PORTFOLIO'
+                        },
+                        {
+                            menu: 'SERVICES'
+                        },
+                        {
+                            menu: 'TESTIMONIAL'
+                        },
+                        {
+                            menu: 'BLOG'
+                        },
+                        {
+                            menu: 'CONTACT'
+                        },
+                    ]
+                },
+                components: {
+                    'logo-component': logoComponent,
+                    'nav-component': navComponent
+                }
+            }); 
+        </script>
+        <!-- HEADER 영역 END -->
+
+        <!-- MAIN 영역 START -->
+        <div id="main">
+            <section1-component v-on:emitevent="increaseNum" v-bind:propssec1="num"></section1-component>
+        </div>
+        <script>
+            var section1Component = {
+                props:['propssec1'],
+                template: '\
+                    <section id="section1">\
+                        <div class="wrap">\
+                            <div class="gap">\
+                                <div class="container">\
+                                    <h4>WE WORK HARD, WE PLAY HARD</h4>\
+                                    <h2>\
+                                        SALIENT IS DIGITAL<br>\
+                                            BRILLIANCE\
+                                    </h2>\
+                                    <h3>\
+                                        CREATIVE SOLUTIONS TO IMPROVE YOUR BUSINESS\
+                                    </h3>\
+                                    <p>\
+                                        <span><a href="javascript:" v-on:click="popup(\'./popup/popup\' + propssec1 + \'.html\', \'window popup \' + propssec1)">OUR SERVICES</a></span>\
+                                    </p>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </section>\
+                ', 
+                methods: {
+                    popup: function(param1, param2) {
+                        var url = param1;
+                        var winName = param2;
+                        this.$emit('emitevent');
+                        window.open(url, winName);
+                    }
+                }
+            };
+
+            var main = new Vue({
+                el: '#main',
+                data: {
+                    num: 0
+                },
+                components: {
+                    'section1-component': section1Component,
+                },
+                methods: {
+                    increaseNum: function() {
+                        this.num += 100;
+                        console.log(this.num);
+                    }
+                },
+                // 화면에 부착이 완료된 상태
+                mounted: function() {
+                    function javascriptFn() { 
+                        var section1 = document.querySelector('#section1');
+                        var winH = window.innerHeight; // 창 높이
+                        function resizeFn() {
+                            winH = window.innerHeight; // 창 높이
+                            section1.style = 'height:' + winH + 'px'; // section1 의 창높이를 설정
+                            // 혹은 section1.style.height = winH + 'px';
+                            console.log('window.innerHeight' + winH);
+                            console.log('section1 의 높이' + section1.style.height);
+                        }
+                        resizeFn(); // 마운트 완료 시 1회 실행
+                        window.addEventListener('resize', resizeFn);
+                        // 창크기 변경 시 즉각 반응하여 함수가 호출되는 이벤트 리스너
+                    }
+
+                    function jQueryFn() {
+                        var section1 = $('#section1');
+                        var winH = $(window).innerHeight();
+
+                        function resizeFn() {
+                            winH = $(window).innerHeight();
+                            section1.css({ height: winH });
+                            console.log('windlow.innerHeight' + winH);
+                            console.log('section1 의 높이' + section1.innerHeight());
+                        }
+                        resizeFn();
+                        $(window).resize(function() {
+                            resizeFn();
+                        })
+                    }
+
+                    // javascriptFn();
+                    jQueryFn();
+                }
+            });
+        </script>
+        <!-- MAIN 영역 END -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Component</title>
+    <!-- 오픈소스 -->
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        #wrapper {
+            width: 1200px;
+            margin: 0 auto;
+            background-color: rgb(230, 211, 211);
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        #wrapper #header h1 {
+            color:darkcyan;
+        }
+
+        #wrapper #header h2 {
+            color:rgb(102, 136, 199);
+        }
+
+        #wrapper #header h2 mark {
+            background-color: cornsilk;
+            border-radius: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="food">
+            <h2>Local Component, Props(Array Object) Communication</h2>
+            <ol>
+                <data-comp v-bind:propsdata='food' v-for='food in foodData'></data-comp>
+            </ol>
+        </div>
+
+        <script>
+            var dataComp = {
+                props: ['propsdata'],
+                template: '<li> Code : {{ propsdata.id }} / Name : {{ propsdata.name }} </li>'
+            }
+            var food = new Vue({
+                el: '#food',
+                data: {
+                    foodData: [
+                        {
+                            id: 'F1',
+                            name: 'latte'
+                        },
+                        {
+                            id: 'F2',
+                            name: 'americano'
+                        },
+                        {
+                            id: 'F3',
+                            name: 'hazelnut'
+                        },
+                        {
+                            id: 'F4',
+                            name: 'macchiato'
+                        }
+                    ]
+                },
+                components: {
+                    'data-comp': dataComp
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>
