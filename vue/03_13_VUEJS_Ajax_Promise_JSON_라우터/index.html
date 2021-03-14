@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX_AXIOS Form Data Transport</title>
+    <link rel="stylesheet" href="./css/style_index.css">
+    <link rel="stylesheet" href="./css/reset_index.css">
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+    <script src="./vue/lib/axios.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="app">
+            <form action="./response.php" name="memberForm" id="memberForm" method="post" >
+                <div class="form-box">
+                    <ul>
+                        <li>
+                            <div>
+                                <label for="userId">ID</label>
+                                <input type="text" name="userId" id="userId" v-model="userId" placeholder="Insert a ID">
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <label for="userPassword">Password</label>
+                                <input type="password" name="userPassword" id="userPassword" v-model="userPassword" placeholder="Insert a Password">
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <label for="email">Email</label>
+                                <input type="text" name="email" id="email" v-model="email" placeholder="Insert a Email Address">
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="button-box">
+                        <input type="button" v-on:click.prevent="memberFn" value="전송(Submit)">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            data: {
+                arr: [],
+                userId: '',
+                userPassword: '',
+                email: ''
+            },
+            methods: {
+                memberFn: function() {
+                    var url = "./response.php";
+                    var data = {
+                        userId: this.userId, 
+                        userPassword: this.userPassword, 
+                        email: this.email
+                    };
+
+                    // AXIOS는 폼데이터 객체를 생성하여 데이터를 전송해야 함
+                    var form = new FormData();
+                    form.append('userId', this.userId);
+                    form.append('userPassword', this.userPassword);
+                    form.append('email', this.email);
+
+                    axios.post(url, form)
+                    .then((response) => {
+                        this.arr = response.data;
+                        console.log('response' + response.data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                }
+            }
+        }).$mount('#app');
+    </script>
+    
+</body>
+
+</html>

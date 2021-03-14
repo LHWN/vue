@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Component</title>
+    <link rel="stylesheet" href="./css/style_axios.css">
+    <link rel="stylesheet" href="./css/reset_axios.css">
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+    <script src="./vue/lib/axios.min.js"></script>
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="app">
+        <h1>회원관리</h1>
+        <table class="member" style="border-collapse: collapse">
+            <tr>
+            <th>NUM</th>
+            <th>ID</th>
+            <th>PASSWORD</th>
+            <th>EMAIL</th>
+            </tr>
+            <tr v-for="(row, idx) in arr">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ row.userId}}</td>
+                <td>{{ row.userPassword}}</td>
+                <td>{{ row.email }}</td>
+            </tr>
+        </table>
+        <div class="button-wrap">
+            <button v-on:click.prevent="axiosJsonFn">멤버출력</button>
+        </div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                arr: []
+            },
+            methods: {
+            axiosJsonFn: function() {
+                var url = './data/member.json';
+                var data = {
+                    
+                }
+                axios.get(url)
+                .then((response) => {
+                    console.log(response);
+                    this.arr = response.data.member;
+
+                    response.data.member.forEach((element, idx) => {
+                        console.log(element.userId);
+                        console.log(element.userPassword);
+                        console.log(element.email);
+                    });
+                })
+            }
+            }
+        })
+    </script>
+</body>
+</html>

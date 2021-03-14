@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Component</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <h1>AJAX_PROMISE_JSON</h1>
+        <script>
+            fetch("./data/data.json")
+            .then((res) => res.json())
+            // .then((res) => { 
+            //     return res.json() 
+            // })
+            .then((data) => {
+                console.log(data);
+                data.item.forEach(function(el, index) {
+                    console.log(index+1, el.name, el.age, el.email);
+                    // console.log(index+1, data.item[index].name, data.item[index].age, data.item[index].email);
+                });
+            })
+        </script>
+    </div>
+</body>
+</html>

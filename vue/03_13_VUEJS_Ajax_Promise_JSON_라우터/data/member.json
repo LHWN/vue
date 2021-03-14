@@ -1,0 +1,13 @@
+{
+  "member": [
+    { "userId": "lhwn1", "userPassword": "lhwn1", "email": "lhwn1@naver.com" },
+    { "userId": "lhwn2", "userPassword": "lhwn2", "email": "lhwn2@naver.com" },
+    { "userId": "lhwn3", "userPassword": "lhwn3", "email": "lhwn3@naver.com" },
+    { "userId": "lhwn4", "userPassword": "lhwn4", "email": "lhwn4@naver.com" },
+    { "userId": "lhwn5", "userPassword": "lhwn5", "email": "lhwn5@naver.com" },
+    { "userId": "lhwn6", "userPassword": "lhwn6", "email": "lhwn6@naver.com" },
+    { "userId": "lhwn7", "userPassword": "lhwn7", "email": "lhwn7@naver.com" },
+    { "userId": "lhwn8", "userPassword": "lhwn8", "email": "lhwn8@naver.com" },
+    { "userId": "lhwn9", "userPassword": "lhwn9", "email": "lhwn9@naver.com" }
+  ]
+}
